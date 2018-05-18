@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+  <title>web-error</title>
+  <script src="web-error.js"></script>
+  <script>
+    AlloyLever.config({
+      cdn:'https://s.url.cn/qqun/qun/qqweb/m/qun/confession/js/vconsole.min.js',
+      reportUrl: "http://a.qq.com",
+      reportPrefix: 'abc',
+      reportKey: 'msg',
+      otherReport: {
+        uin: 100000
+      },
+      entry:"#entry"
+    })
+  </script>
+  <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <!-- <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script> -->
+  <style>
+    .pd20{
+      padding: 20px;
+    }
+    .mgr10{
+      margin-right: 10px;
+    }
+  </style>
+</head>
+
+<body>
+<div class="container">
+  <div class="page-header">
+    <h1 class="text-center">web-error</h1>
+    <p class="alert alert-info">
+      Library for error monitoring and reporting, user problem localization features
+    </p>
+  </div>
+  
+  <div class="text-center pd20">
+    <a class="btn btn-info mgr10" href="https://github.com/EvanLiu2968/web-error" target="_blank">GitHub</a>
+    <a class="btn btn-info mgr10" id="entry" href="javascript:location.href=originHref()" >normal</a>
+    <a class="btn btn-info mgr10" id="entry" href="javascript:hideVconsole()" >load vconsole</a>
+    <a class="btn btn-info" id="entry" href="javascript:showVconsole()" >show vconsole</a>
+  </div>
+  <pre>
+    <code>
+      AlloyLever.config({
+        cdn:'https://s.url.cn/qqun/qun/qqweb/m/qun/confession/js/vconsole.min.js',
+        reportUrl: "//a.qq.com",
+        reportPrefix: 'abc',
+        reportKey: 'msg',
+        otherReport: {
+          uin: 491862102
+        },
+        entry:"#entry"
+      })
+  
+      console.log('this is log content')
+      console.info('this is info content')
+      console.debug('this is debug content')
+      console.warn('this is warn content')
+      console.error('this is error content')
+  
+    </code>
+  </pre>
+  <p class="text-muted text-center pd20">
+    © 2018 <a class="text-muted" href="https://github.com/EvanLiu2968" target="_blank">EvanLiu2968</a>, Inc.
+  </p>
+</div>
+
+
+<script>
+  console.log('this is log content')
+  console.info('this is info content')
+  console.debug('this is debug content')
+  console.warn('this is warn content')
+  console.error('this is error content')
+  //入口
+  //AlloyLever.entry('#entry')
+  //也可以埋在多个入口
+  //AlloyLever.entry('#entry2')
+  window.originHref=function(){
+    return window.location.origin + window.location.pathname;
+  }
+  window.showVconsole=function(){
+    window.location.href = originHref() + '?vconsole=show';
+  }
+  window.hideVconsole=function(){
+    window.location.href = originHref() + '?vconsole=hide';
+  }
+</script>
+</body>
+</html>

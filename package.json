@@ -1,0 +1,26 @@
+{
+  "name": "web-error",
+  "version": "1.0.0",
+  "main": "web-error.js",
+  "description": "library for error monitoring and reporting, user problem localization features",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/EvanLiu2968/web-error"
+  },
+  "keywords": [
+    "error-monitoring",
+    "error-reporting",
+    "error-handler"
+  ],
+  "dependencies": {},
+  "devDependencies": {},
+  "author": "EvanLiu2968",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EvanLiu2968/web-error/issues/new"
+  },
+  "homepage": "http://EvanLiu2968.github.io/web-error/"
+}
