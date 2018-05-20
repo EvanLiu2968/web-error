@@ -1,6 +1,6 @@
 /*!
- *  AlloyLever v1.0.2 By dntzhang
- *  Github: https://github.com/AlloyTeam/AlloyLever
+ *  Author: https://www.evanliu2968.com.cn
+ *  Github: https://github.com/EvanLiu2968/web-error
  *  MIT Licensed.
  */
 ;(function (root, factory) {
@@ -9,28 +9,26 @@
   else if(typeof define === 'function' && define.amd)
     define([], factory)
   else if(typeof exports === 'object')
-    exports["AlloyLever"] = factory()
+    exports["WebError"] = factory()
   else
-    root["AlloyLever"] = factory()
+    root["WebError"] = factory()
 })(this, function() {
-  var AlloyLever = {}
-  AlloyLever.settings = {
-    cdn:'//s.url.cn/qqun/qun/qqweb/m/qun/confession/js/vconsole.min.js',
-    reportUrl: null,
-    reportPrefix: '',
-    reportKey: 'msg',
-    otherReport: null,
-    entry: null
+  var Luban = {}
+  if(typeof window === 'undefined') return Luban;
+  
+  Luban.settings = {
+    vconsole:'//s.url.cn/qqun/qun/qqweb/m/qun/confession/js/vconsole.min.js',
+    onError: null
   }
 
-  AlloyLever.store = []
+  Luban.store = []
 
   var methodList = ['log', 'info', 'warn', 'debug', 'error'];
   methodList.forEach(function(item) {
     var method = console[item];
 
     console[item] = function() {
-      AlloyLever.store.push({
+      Luban.store.push({
         logType: item,
         logs: arguments
       });
@@ -39,33 +37,28 @@
     }
   });
 
-  AlloyLever.logs = []
-  AlloyLever.config = function(config){
+  // Luban.logs = []
+  Luban.config = function(config){
     for(var i in config){
       if(config.hasOwnProperty(i)){
-        AlloyLever.settings[i] = config[i]
+        Luban.settings[i] = config[i]
       }
     }
 
-    if(config.entry){
-      window.addEventListener('load', function() {
-        AlloyLever.entry(config.entry)
-      })
-    }
 
     var parameter = getParameter('vconsole')
 
     if(parameter) {
       if (parameter === 'show') {
-        AlloyLever.vConsole(true)
+        Luban.vConsole(true)
       } else {
-        AlloyLever.vConsole(false)
+        Luban.vConsole(false)
       }
     }
   }
 
-  AlloyLever.vConsole = function(show){
-    loadScript(AlloyLever.settings.cdn, function() {
+  Luban.vConsole = function(show){
+    loadScript(Luban.settings.vconsole, function() {
 
       //support vconsole3.0
       if (typeof vConsole === 'undefined') {
@@ -76,11 +69,10 @@
       }
 
       var i = 0,
-        len = AlloyLever.store.length
+        len = Luban.store.length
 
       for (; i < len; i++) {
-        var item = AlloyLever.store[i]
-        //console[item.type].apply(console, item.logs)
+        var item = Luban.store[i]
         //prevent twice log
         item.noOrigin = true
         vConsole.pluginList.default.printLog(item)
@@ -100,21 +92,9 @@
     })
   }
 
-  AlloyLever.entry = function(selector) {
-    var count = 0,
-      entry = document.querySelector(selector)
-    if(entry) {
-      entry.addEventListener('click', function () {
-        count++
-        if (count > 5) {
-          count = -10000
-          AlloyLever.vConsole(true)
-        }
-      })
-    }
-  }
 
   window.onerror = function(msg, url, line, col, error) {
+    console.log(arguments)
     var newMsg = msg
 
     if (error && error.stack) {
@@ -129,12 +109,15 @@
 
     newMsg = (newMsg + "" || "").substr(0,500)
 
-    AlloyLever.logs.push({
+    var errorInfo = {
       msg: newMsg,
       target: url,
       rowNum: line,
-      colNum: col
-    })
+      colNum: col,
+      time: new Date().getTime()
+    }
+
+    // Luban.logs.push(errorInfo)
 
     if (msg.toLowerCase().indexOf('script error') > -1) {
       console.error('Script Error: See Browser Console for Detail')
@@ -142,20 +125,11 @@
       console.error(newMsg)
     }
 
-    var ss = AlloyLever.settings
-    if(ss.reportUrl) {
-      var src = ss.reportUrl + (ss.reportUrl.indexOf('?')>-1?'&':'?') + ss.reportKey + '='+( ss.reportPrefix?('[' + ss.reportPrefix +']'):'')+ newMsg+'&t='+new Date().getTime()
-      if(ss.otherReport) {
-        for (var i in ss.otherReport) {
-          if (ss.otherReport.hasOwnProperty(i)) {
-            src += '&' + i + '=' + ss.otherReport[i]
-          }
-        }
-      }
-      new Image().src = src
+    var settings = Luban.settings
+    if(typeof settings.onError === 'function'){
+      settings.onError.call(Luban, errorInfo)
     }
   }
-
 
 
   function loadScript(src, callback){
@@ -221,9 +195,9 @@
       return null
   }
 
-  AlloyLever.getCookie = getCookie
-  AlloyLever.getParameter= getParameter
-  AlloyLever.loadScript = loadScript
+  Luban.getCookie = getCookie
+  Luban.getParameter= getParameter
+  Luban.loadScript = loadScript
 
-  return AlloyLever
+  return Luban
 });

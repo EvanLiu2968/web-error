@@ -1,10 +1,11 @@
 {
   "name": "web-error",
   "version": "1.0.0",
-  "main": "web-error.js",
+  "main": "index.js",
   "description": "library for error monitoring and reporting, user problem localization features",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "gulp",
+    "build": "gulp minify-js"
   },
   "repository": {
     "type": "git",
@@ -16,7 +17,12 @@
     "error-handler"
   ],
   "dependencies": {},
-  "devDependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.3",
+    "gulp-uglify": "^3.0.0",
+    "gulp-webserver": "^0.9.1"
+  },
   "author": "EvanLiu2968",
   "license": "MIT",
   "bugs": {
