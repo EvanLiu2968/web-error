@@ -71,31 +71,22 @@
       WebError.config({
         vconsole:'https://s.url.cn/qqun/qun/qqweb/m/qun/confession/js/vconsole.min.js',
         onError: function(errorInfo){
-          var reportUrl = "http://a.qq.com",
-            reportKey = 'msg',
-            reportPrefix = '[test]',
-            otherReport = {
-              pixel: window.devicePixelRatio,
-              platform: window.navigator.platform,
-              userAgent: window.navigator.userAgent,
-              t: errorInfo.time
-            };
+          // you can report it to remote server, follow as demo
           console.log(errorInfo)
-          var settings = WebError.settings
-          console.log(settings)
           return;
-          // report test
-          if(reportUrl) {
-            var src = reportUrl + (reportUrl.indexOf('?')>-1?'&':'?') + reportKey + '=' + reportPrefix + errorInfo.msg
-            if(otherReport) {
-              for (var i in otherReport) {
-                if (otherReport.hasOwnProperty(i)) {
-                  src += '&' + i + '=' + otherReport[i]
-                }
-              }
+          var src = "http://www.baidu.com?error=" + errorInfo.msg
+          var otherReport = {
+            pixel: window.devicePixelRatio,
+            platform: window.navigator.platform,
+            userAgent: window.navigator.userAgent,
+            t: errorInfo.time
+          };
+          for (var i in otherReport) {
+            if (otherReport.hasOwnProperty(i)) {
+              src += '&' + i + '=' + otherReport[i]
             }
-            new Image().src = src
           }
+          new Image().src = src
         }
       })
   
