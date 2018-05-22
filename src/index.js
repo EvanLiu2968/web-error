@@ -1,6 +1,6 @@
 /*!
  *  Author: https://www.evanliu2968.com.cn
- *  Github: https://github.com/EvanLiu2968/web-error
+ *  Github: https://github.com/EvanLiu2968/web-sophon
  *  MIT Licensed.
  */
 ;(function (root, factory) {
@@ -9,15 +9,16 @@
   else if(typeof define === 'function' && define.amd)
     define([], factory)
   else if(typeof exports === 'object')
-    exports["WebError"] = factory()
+    exports["Sophon"] = factory()
   else
-    root["WebError"] = factory()
+    root["Sophon"] = factory()
 })(this, function() {
   var Luban = {}
   if(typeof window === 'undefined') return Luban;
   
   Luban.settings = {
     vconsole:'//s.url.cn/qqun/qun/qqweb/m/qun/confession/js/vconsole.min.js',
+    logger: true,
     onError: null
   }
 
@@ -33,7 +34,9 @@
         logs: arguments
       });
 
-      method.apply(console, arguments);
+      if(Luban.settings.logger) {
+        method.apply(console, arguments);
+      }
     }
   });
 
@@ -129,7 +132,14 @@
     if(typeof settings.onError === 'function'){
       settings.onError.call(Luban, errorInfo)
     }
+    if(settings.logger) {
+      return true
+    }
   }
+
+  window.addEventListener('error', function(e){
+    console.log(e)
+  }, true)
 
 
   function loadScript(src, callback){

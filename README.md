@@ -1,5 +1,8 @@
 
-## web-error 
+## web-sophon 
+
+> Sophon comes from The Trisolaris of Centaurus.
+<img style="display:block;margin:0 auto" src="http://img.netbian.com/file/2017/1030/9ac3e08c2ee27ad2db304cb979b83724.jpg">
 
 * error monitoring and remote reporting, it can be configured free.
 * support for [vConsole](https://github.com/WechatFE/vConsole) error display.
@@ -7,14 +10,15 @@
 ## Install
 
 ```bash
-npm install **
+npm install web-sophon
 ```
-download the git repository, or use the online [https://evanliu2968.github.io/web-error/lib/weberror.min.js](https://evanliu2968.github.io/web-error/lib/weberror.min.js)
+download the git repository, or use the online [https://evanliu2968.github.io/web-sophon/lib/sophon.min.js](https://evanliu2968.github.io/web-sophon/lib/sophon.min.js)
 
 ## Usage
 
 ```js
-WebError.config({
+const Sophon = require('web-sophon')
+Sophon.config({
   vconsole:'https://s.url.cn/qqun/qun/qqweb/m/qun/confession/js/vconsole.min.js',
   onError: function(errorInfo){
     // you can report it to remote server, follow as demo
@@ -41,7 +45,7 @@ the library will listen to `window.onerror` and save the error information, and 
 
 ## DEMO
 
-[https://EvanLiu2968.github.io/web-error/](https://EvanLiu2968.github.io/web-error/)
+[https://EvanLiu2968.github.io/web-sophon/](https://EvanLiu2968.github.io/web-sophon/)
 
 资料参考
 - [AlloyLever](https://github.com/AlloyTeam/AlloyLever)

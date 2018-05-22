@@ -1,7 +1,7 @@
 {
-  "name": "web-error",
+  "name": "web-sophon",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/index.js",
   "description": "library for error monitoring and reporting, user problem localization features",
   "scripts": {
     "test": "gulp",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/EvanLiu2968/web-error"
+    "url": "https://github.com/EvanLiu2968/web-sophon"
   },
   "keywords": [
     "error-monitoring",
@@ -26,7 +26,7 @@
   "author": "EvanLiu2968",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/EvanLiu2968/web-error/issues/new"
+    "url": "https://github.com/EvanLiu2968/web-sophon/issues/new"
   },
-  "homepage": "http://EvanLiu2968.github.io/web-error/"
+  "homepage": "http://EvanLiu2968.github.io/web-sophon/"
 }

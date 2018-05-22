@@ -1,8 +1,8 @@
 /*!
- *  error test for all type
+ *  error test case
  */
 
-// ReferenceError
+// request error
 asyncExec(function(){
   new Image().src = 'https://test.evanliu2968.com.cn'
 })
