@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-  <title>web-error</title>
+  <title>web-sophon</title>
   <script src="src/index.js"></script>
   <script>
-    WebError.config({
+    Sophon.config({
       vconsole:'https://s.url.cn/qqun/qun/qqweb/m/qun/confession/js/vconsole.min.js',
       onError: function(errorInfo){
         // you can report it to remote server, follow as demo
@@ -54,21 +54,21 @@
 <body>
 <div class="container">
   <div class="page-header">
-    <h1 class="text-center">web-error</h1>
+    <h1 class="text-center">web-sophon</h1>
     <p class="alert alert-info">
       Library for error monitoring and reporting, user problem localization features
     </p>
   </div>
   
   <div class="text-center pd20">
-    <a class="btn btn-info mgr10" href="https://github.com/EvanLiu2968/web-error" target="_blank">GitHub</a>
+    <a class="btn btn-info mgr10" href="https://github.com/EvanLiu2968/web-sophon" target="_blank">GitHub</a>
     <a class="btn btn-info mgr10" id="entry" href="javascript:location.href=originHref()" >normal</a>
     <a class="btn btn-info mgr10" id="entry" href="javascript:hideVconsole()" >load vconsole</a>
     <a class="btn btn-info" id="entry" href="javascript:showVconsole()" >show vconsole</a>
   </div>
   <pre>
     <code>
-      WebError.config({
+      Sophon.config({
         vconsole:'https://s.url.cn/qqun/qun/qqweb/m/qun/confession/js/vconsole.min.js',
         onError: function(errorInfo){
           // you can report it to remote server, follow as demo

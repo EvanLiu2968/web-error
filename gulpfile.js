@@ -28,9 +28,9 @@ gulp.task('watch', function() {
 
 gulp.task('minify-js', function() {
   gulp.src(basedir + 'src/index.js')
-    //.pipe(concat('weberror.js'))
+    //.pipe(concat('sophon.js'))
     // .pipe(gulp.dest(basedir + 'lib'))
-    .pipe(rename('weberror.min.js'))
+    .pipe(rename('sophon.min.js'))
     .pipe(uglify())
     .pipe(gulp.dest(basedir + 'lib'));
 });
